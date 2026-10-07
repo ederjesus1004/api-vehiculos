@@ -41,7 +41,7 @@ public class Vehiculo {
 
     //Dinero → BigDecimal. 10 dígitos en total, 2 decimales.
     @Column(nullable = false, precision = 10, scale = 2)
-    private BigDecimal dinero;
+    private BigDecimal precio;
 
     @Column(name = "fecha_registro", nullable = false, updatable = false)
     private LocalDateTime fechaRegistro;

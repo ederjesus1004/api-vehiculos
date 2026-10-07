@@ -1,0 +1,57 @@
+package dev.eder.vehiculos.Controller;
+
+import java.util.List;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+
+import dev.eder.vehiculos.dto.VehiculoRequest;
+import dev.eder.vehiculos.dto.VehiculoResponse;
+import dev.eder.vehiculos.service.VehiculoService;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+
+@RestController
+@RequestMapping("/api/vehiculos")
+@RequiredArgsConstructor
+public class VehiculoController {
+
+    // Pide la INTERFACE. Spring le entrega VehiculoServiceImpl.
+    private final VehiculoService vehiculoService;
+
+    @GetMapping
+    public List<VehiculoResponse> listar(){
+        return vehiculoService.listar();
+    }
+
+    @GetMapping
+    public VehiculoResponse obtenerPorId(@PathVariable Long id){
+        return vehiculoService.obtenerPorId(id);
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public VehiculoResponse crear(@Valid @RequestBody VehiculoRequest request){
+        return vehiculoService.crear(request);
+    }
+
+    @PutMapping("/{id}")
+    public VehiculoResponse actualizar(@PathVariable Long id, @Valid @RequestBody VehiculoRequest request){
+        return vehiculoService.actualizar(id, request);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void eliminar(Long id){
+        vehiculoService.eliminar(id);
+    }
+
+}

@@ -32,7 +32,7 @@ public class VehiculoController {
         return vehiculoService.listar();
     }
 
-    @GetMapping
+    @GetMapping("/{id}")
     public VehiculoResponse obtenerPorId(@PathVariable Long id){
         return vehiculoService.obtenerPorId(id);
     }
@@ -50,7 +50,7 @@ public class VehiculoController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void eliminar(Long id){
+    public void eliminar(@PathVariable Long id){
         vehiculoService.eliminar(id);
     }
 

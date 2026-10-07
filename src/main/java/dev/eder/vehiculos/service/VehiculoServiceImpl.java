@@ -38,7 +38,7 @@ public class VehiculoServiceImpl implements VehiculoService{
     }
     
     @Override
-    @Transactional(readOnly = true)
+    @Transactional
     public VehiculoResponse crear(VehiculoRequest request){
         // Regla: la placa no puede existir
         if (vehiculoRespository.existsByPlaca(request.placa())) {
